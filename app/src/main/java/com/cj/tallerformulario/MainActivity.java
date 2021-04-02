@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText txtSalario;
     private ListView lvLista;
     private Button btnAgregar;
+    private Button btnListar;
     private ArrayAdapter<String> adapter;
     private ArrayList<Persona> list = new ArrayList<>();
 
@@ -37,7 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtSalario = findViewById(R.id.txtSalario);
         lvLista = findViewById(R.id.lvLista);
         btnAgregar = findViewById(R.id.btnAgregar);
+        btnListar = findViewById(R.id.btnListar);
         btnAgregar.setOnClickListener(this);
+        btnListar.setOnClickListener(this);
     }
 
     @Override
@@ -46,8 +49,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnAgregar:
                 agregarPersona();
                 limpiarCampos();
+                break;
+            case R.id.btnListar:
                 adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
                 lvLista.setAdapter(adapter);
+                break;
         }
     }
 
