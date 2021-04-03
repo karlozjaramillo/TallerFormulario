@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayAdapter<String> adapter;
     private ArrayList<Persona> list = new ArrayList<>();
 
+    String colores[] = {"Amarillo", "Azul", "Rojo", "Verde", "Negro", "Blanco", "Naranja", "Violeta"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +51,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnAgregar:
                 agregarPersona();
                 limpiarCampos();
+                adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+                lvLista.setAdapter(adapter);
                 break;
             case R.id.btnListar:
-                adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+                adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, colores);
                 lvLista.setAdapter(adapter);
                 break;
         }

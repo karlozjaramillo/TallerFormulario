@@ -9,7 +9,7 @@
 
     <EditText
         android:id="@+id/txtNombre"
-        android:layout_width="0dp"
+        android:layout_width="145dp"
         android:layout_height="50dp"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
@@ -27,7 +27,7 @@
 
     <EditText
         android:id="@+id/txtApellido"
-        android:layout_width="0dp"
+        android:layout_width="145dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
@@ -47,7 +47,7 @@
 
     <EditText
         android:id="@+id/txtCargo"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
@@ -66,7 +66,7 @@
 
     <EditText
         android:id="@+id/txtEmail"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
@@ -85,7 +85,7 @@
 
     <EditText
         android:id="@+id/txtEdad"
-        android:layout_width="0dp"
+        android:layout_width="145dp"
         android:layout_height="50dp"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
@@ -96,63 +96,88 @@
         android:hint="Edad"
         android:inputType="number"
         android:paddingLeft="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtSalario"
+        app:layout_constraintBottom_toTopOf="@+id/btnAgregar"
         app:layout_constraintEnd_toStartOf="@+id/txtSalario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtSalario" />
 
     <EditText
         android:id="@+id/txtSalario"
-        android:layout_width="0dp"
+        android:layout_width="145dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
-        android:layout_marginBottom="131dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="Salario"
         android:inputType="numberDecimal"
         android:paddingLeft="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAgregar"
+        app:layout_constraintBottom_toTopOf="@+id/btnListar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtEdad"
         app:layout_constraintTop_toBottomOf="@+id/txtCargo" />
 
     <Button
         android:id="@+id/btnAgregar"
-        android:layout_width="0dp"
+        android:layout_width="145dp"
         android:layout_height="50dp"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:text="AGREGAR"
         app:backgroundTint="@android:color/holo_blue_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@+id/btnListar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSalario" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEdad" />
 
     <Button
         android:id="@+id/btnListar"
-        android:layout_width="0dp"
+        android:layout_width="145dp"
         android:layout_height="50dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginLeft="55dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
         android:text="LISTAR"
         app:backgroundTint="@android:color/holo_blue_dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnAgregar"
+        app:layout_constraintTop_toBottomOf="@+id/txtSalario" />
+
+    <Button
+        android:id="@+id/btnSalario"
+        android:layout_width="145dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
+        android:text="SALARIO"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnEdad"
+        app:layout_constraintTop_toBottomOf="@+id/btnListar" />
+
+    <Button
+        android:id="@+id/btnEdad"
+        android:layout_width="145dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:text="EDAD"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:layout_constraintEnd_toStartOf="@+id/btnSalario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAgregar" />
 
     <ListView
         android:id="@+id/lvLista"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="0dp"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
@@ -164,6 +189,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnListar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSalario" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
