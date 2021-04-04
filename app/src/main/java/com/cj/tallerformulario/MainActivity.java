@@ -76,6 +76,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, edadPersonas);
                 lvLista.setAdapter(adapter);
                 break;
+            case R.id.btnSalario:
+                ordenarMenorMayorSalario();
+                ArrayList<String> salarioPersonas = new ArrayList<>();
+                String bajo = "El salario más bajo es para " + personas.get(0);
+                String alto = "El salario más alto es para " + personas.get(personas.size() - 1);
+                salarioPersonas.add(bajo);
+                salarioPersonas.add(alto);
+                adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, salarioPersonas);
+                lvLista.setAdapter(adapter);
+                break;
         }
     }
 
@@ -106,6 +116,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public int compare(Persona p1, Persona p2) {
                 return new Integer(p1.getEdad()).compareTo(new Integer(p2.getEdad()));
+            }
+        });
+    }
+
+    private void ordenarMenorMayorSalario() {
+        Collections.sort(personas, new Comparator<Persona>() {
+            @Override
+            public int compare(Persona p1, Persona p2) {
+                return new Double(p1.getSalario()).compareTo(new Double(p2.getSalario()));
             }
         });
     }
