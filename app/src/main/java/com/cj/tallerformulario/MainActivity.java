@@ -10,6 +10,8 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,8 +24,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ListView lvLista;
     private Button btnAgregar;
     private Button btnListar;
+    private Button btnEdad;
+    private Button btnSalario;
     private ArrayAdapter<String> adapter;
-    private ArrayList<Persona> list = new ArrayList<>();
+    private ArrayList<Persona> personas = new ArrayList<>();
 
     String colores[] = {"Amarillo", "Azul", "Rojo", "Verde", "Negro", "Blanco", "Naranja", "Violeta"};
 
@@ -41,8 +45,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         lvLista = findViewById(R.id.lvLista);
         btnAgregar = findViewById(R.id.btnAgregar);
         btnListar = findViewById(R.id.btnListar);
+        btnEdad = findViewById(R.id.btnEdad);
+        btnSalario = findViewById(R.id.btnSalario);
         btnAgregar.setOnClickListener(this);
         btnListar.setOnClickListener(this);
+        btnEdad.setOnClickListener(this);
+        btnSalario.setOnClickListener(this);
     }
 
     @Override
@@ -51,11 +59,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnAgregar:
                 agregarPersona();
                 limpiarCampos();
-                adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+                adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, personas);
                 lvLista.setAdapter(adapter);
                 break;
             case R.id.btnListar:
                 adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, colores);
+                lvLista.setAdapter(adapter);
+                break;
+            case R.id.btnEdad:
+                ordenarMenorMayorEdad();
+                ArrayList<String> edadPersonas = new ArrayList<>();
+                String joven = "La persona más joven es " + personas.get(0);
+                String vieja = "La persona más vieja es " + personas.get(personas.size() - 1);
+                edadPersonas.add(joven);
+                edadPersonas.add(vieja);
+                adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, edadPersonas);
                 lvLista.setAdapter(adapter);
                 break;
         }
@@ -71,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Persona persona = new Persona(nombre, apellido, email, edad, salario, cargo);
 
-        list.add(persona);
+        personas.add(persona);
     }
 
     private void limpiarCampos() {
@@ -81,5 +99,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtEdad.getText().clear();
         txtCargo.getText().clear();
         txtSalario.getText().clear();
+    }
+
+    private void ordenarMenorMayorEdad() {
+        Collections.sort(personas, new Comparator<Persona>() {
+            @Override
+            public int compare(Persona p1, Persona p2) {
+                return new Integer(p1.getEdad()).compareTo(new Integer(p2.getEdad()));
+            }
+        });
     }
 }
