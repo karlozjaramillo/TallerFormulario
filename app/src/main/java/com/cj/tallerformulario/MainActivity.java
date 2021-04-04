@@ -81,8 +81,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ArrayList<String> salarioPersonas = new ArrayList<>();
                 String bajo = "El salario más bajo es para " + personas.get(0);
                 String alto = "El salario más alto es para " + personas.get(personas.size() - 1);
+                String salarioPromedio = "El salario promedio es $" + salarioPromedio();
                 salarioPersonas.add(bajo);
                 salarioPersonas.add(alto);
+                salarioPersonas.add(salarioPromedio);
                 adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, salarioPersonas);
                 lvLista.setAdapter(adapter);
                 break;
@@ -127,5 +129,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return new Double(p1.getSalario()).compareTo(new Double(p2.getSalario()));
             }
         });
+    }
+
+    private Double salarioPromedio() {
+        int contador = 0;
+        double salarioTotal = 0;
+        double promedio = 0;
+        for (Persona persona :
+                personas) {
+            salarioTotal += persona.getSalario();
+            contador++;
+        }
+        promedio = salarioTotal / contador;
+        return promedio;
     }
 }
