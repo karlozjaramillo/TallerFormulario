@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayAdapter<String> adapter;
     private ArrayList<Persona> personas = new ArrayList<>();
 
-    String colores[] = {"Amarillo", "Azul", "Rojo", "Verde", "Negro", "Blanco", "Naranja", "Violeta"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this,
                 R.array.cargos, android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapterSpinner);
     }
 
@@ -110,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ArrayList<String> salarioPersonas = new ArrayList<>();
                 String bajo = "El salario más bajo es para " + personas.get(0);
                 String alto = "El salario más alto es para " + personas.get(personas.size() - 1);
-                String salarioPromedio = "El salario promedio es $" + salarioPromedio();
+                String salarioPromedio = "El salario promedio es $" + salarioPromedioTotal();
                 salarioPersonas.add(bajo);
                 salarioPersonas.add(alto);
                 salarioPersonas.add(salarioPromedio);
@@ -160,10 +157,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private Double salarioPromedio() {
+    private Double salarioPromedioTotal() {
         int contador = 0;
         double salarioTotal = 0;
-        double promedio = 0;
+        double promedio;
         for (Persona persona :
                 personas) {
             salarioTotal += persona.getSalario();
@@ -176,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Double salarioPromedioCargo(String cargo) {
         int contador = 0;
         double salarioTotal = 0;
-        double promedio = 0;
+        double promedio;
         for (Persona persona :
                 personas) {
             if (persona.getCargo().equals(cargo)) {
