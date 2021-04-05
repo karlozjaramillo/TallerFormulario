@@ -69,7 +69,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 lvLista.setAdapter(adapter);
                 break;
             case R.id.btnListar:
-                adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, colores);
+                ArrayList<String> salariosCargos = new ArrayList<>();
+                String mensajeDesarrollador = "";
+                String mensajeAnalista = "";
+                String mensajeQA = "";
+                for (Persona persona : personas
+                ) {
+                    if (persona.getCargo().equals("Desarrollador")) {
+                        mensajeDesarrollador = "Desarrolladores: " + contarDesarrolladores() + "\n" +
+                                "El salario promedio de un Desarrollador es $" + salarioPromedioDesarrollador();
+                    } else if (persona.getCargo().equals("Analista")) {
+                        mensajeAnalista = "Analistas: " + contarAnalistas() + "\n" +
+                                "El salario promedio de un Analista es $" + salarioPromedioAnalista();
+                    } else if (persona.getCargo().equals("QA")) {
+                        mensajeQA = "QA's: " + contarQA() + "\n" +
+                                "El salario promedio de un QA es $" + salarioPromedioQA();
+                    }
+                }
+                salariosCargos.add(mensajeDesarrollador);
+                salariosCargos.add(mensajeAnalista);
+                salariosCargos.add(mensajeQA);
+                adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, salariosCargos);
                 lvLista.setAdapter(adapter);
                 break;
             case R.id.btnEdad:
@@ -148,5 +168,83 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         promedio = salarioTotal / contador;
         return promedio;
+    }
+
+    private Double salarioPromedioDesarrollador() {
+        int contador = 0;
+        double salarioTotal = 0;
+        double promedio = 0;
+        for (Persona persona :
+                personas) {
+            if (persona.getCargo().equals("Desarrollador")) {
+                salarioTotal += persona.getSalario();
+                contador++;
+            }
+        }
+        promedio = salarioTotal / contador;
+        return promedio;
+    }
+
+    private Double salarioPromedioAnalista() {
+        int contador = 0;
+        double salarioTotal = 0;
+        double promedio = 0;
+        for (Persona persona :
+                personas) {
+            if (persona.getCargo().equals("Analista")) {
+                salarioTotal += persona.getSalario();
+                contador++;
+            }
+        }
+        promedio = salarioTotal / contador;
+        return promedio;
+    }
+
+    private Double salarioPromedioQA() {
+        int contador = 0;
+        double salarioTotal = 0;
+        double promedio = 0;
+        for (Persona persona :
+                personas) {
+            if (persona.getCargo().equals("QA")) {
+                salarioTotal += persona.getSalario();
+                contador++;
+            }
+        }
+        promedio = salarioTotal / contador;
+        return promedio;
+    }
+
+    private int contarDesarrolladores() {
+        int contador = 0;
+        for (Persona persona :
+                personas) {
+            if (persona.getCargo().equals("Desarrollador")) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    private int contarAnalistas() {
+        int contador = 0;
+        for (Persona persona :
+                personas) {
+            if (persona.getCargo().equals("Analista")) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    private int contarQA() {
+        int contador = 0;
+        for (Persona persona :
+                personas) {
+            if (persona.getCargo().equals("QA")) {
+                contador++;
+            }
+        }
+        return contador;
     }
 }
