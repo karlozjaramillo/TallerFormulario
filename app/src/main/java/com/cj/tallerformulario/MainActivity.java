@@ -70,20 +70,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnListar:
                 ArrayList<String> salariosCargos = new ArrayList<>();
+                String desarrollador = "Desarrollador";
+                String analista = "Analista";
+                String qa = "QA";
                 String mensajeDesarrollador = "";
                 String mensajeAnalista = "";
                 String mensajeQA = "";
                 for (Persona persona : personas
                 ) {
                     if (persona.getCargo().equals("Desarrollador")) {
-                        mensajeDesarrollador = "Desarrolladores: " + contarDesarrolladores() + "\n" +
-                                "El salario promedio de un Desarrollador es $" + salarioPromedioDesarrollador();
+                        mensajeDesarrollador = "Desarrolladores: " + contarCargo(desarrollador) + "\n" +
+                                "El salario promedio de un Desarrollador es $" + salarioPromedioCargo(desarrollador);
                     } else if (persona.getCargo().equals("Analista")) {
-                        mensajeAnalista = "Analistas: " + contarAnalistas() + "\n" +
-                                "El salario promedio de un Analista es $" + salarioPromedioAnalista();
+                        mensajeAnalista = "Analistas: " + contarCargo(analista) + "\n" +
+                                "El salario promedio de un Analista es $" + salarioPromedioCargo(analista);
                     } else if (persona.getCargo().equals("QA")) {
-                        mensajeQA = "QA's: " + contarQA() + "\n" +
-                                "El salario promedio de un QA es $" + salarioPromedioQA();
+                        mensajeQA = "QA's: " + contarCargo(qa) + "\n" +
+                                "El salario promedio de un QA es $" + salarioPromedioCargo(qa);
                     }
                 }
                 salariosCargos.add(mensajeDesarrollador);
@@ -170,13 +173,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return promedio;
     }
 
-    private Double salarioPromedioDesarrollador() {
+    private Double salarioPromedioCargo(String cargo) {
         int contador = 0;
         double salarioTotal = 0;
         double promedio = 0;
         for (Persona persona :
                 personas) {
-            if (persona.getCargo().equals("Desarrollador")) {
+            if (persona.getCargo().equals(cargo)) {
                 salarioTotal += persona.getSalario();
                 contador++;
             }
@@ -185,63 +188,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return promedio;
     }
 
-    private Double salarioPromedioAnalista() {
-        int contador = 0;
-        double salarioTotal = 0;
-        double promedio = 0;
-        for (Persona persona :
-                personas) {
-            if (persona.getCargo().equals("Analista")) {
-                salarioTotal += persona.getSalario();
-                contador++;
-            }
-        }
-        promedio = salarioTotal / contador;
-        return promedio;
-    }
-
-    private Double salarioPromedioQA() {
-        int contador = 0;
-        double salarioTotal = 0;
-        double promedio = 0;
-        for (Persona persona :
-                personas) {
-            if (persona.getCargo().equals("QA")) {
-                salarioTotal += persona.getSalario();
-                contador++;
-            }
-        }
-        promedio = salarioTotal / contador;
-        return promedio;
-    }
-
-    private int contarDesarrolladores() {
+    private int contarCargo(String cargo) {
         int contador = 0;
         for (Persona persona :
                 personas) {
-            if (persona.getCargo().equals("Desarrollador")) {
-                contador++;
-            }
-        }
-        return contador;
-    }
-
-    private int contarAnalistas() {
-        int contador = 0;
-        for (Persona persona :
-                personas) {
-            if (persona.getCargo().equals("Analista")) {
-                contador++;
-            }
-        }
-        return contador;
-    }
-
-    private int contarQA() {
-        int contador = 0;
-        for (Persona persona :
-                personas) {
-            if (persona.getCargo().equals("QA")) {
+            if (persona.getCargo().equals(cargo)) {
                 contador++;
             }
         }
