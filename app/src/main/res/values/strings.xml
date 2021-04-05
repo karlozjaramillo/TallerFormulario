@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Taller Formulario</string>
+    <string-array name="cargos">
+        <item>Desarrollador</item>
+        <item>Analista</item>
+        <item>QA</item>
+    </string-array>
 </resources>

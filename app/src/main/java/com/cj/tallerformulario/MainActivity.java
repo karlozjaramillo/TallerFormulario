@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText txtApellido;
     private EditText txtEmail;
     private EditText txtEdad;
-    private EditText txtCargo;
+    private Spinner dropdown;
     private EditText txtSalario;
     private ListView lvLista;
     private Button btnAgregar;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtApellido = findViewById(R.id.txtApellido);
         txtEmail = findViewById(R.id.txtEmail);
         txtEdad = findViewById(R.id.txtEdad);
-        txtCargo = findViewById(R.id.txtCargo);
+        dropdown = findViewById(R.id.spinner);
         txtSalario = findViewById(R.id.txtSalario);
         lvLista = findViewById(R.id.lvLista);
         btnAgregar = findViewById(R.id.btnAgregar);
@@ -51,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnListar.setOnClickListener(this);
         btnEdad.setOnClickListener(this);
         btnSalario.setOnClickListener(this);
+
+        ArrayAdapter<CharSequence> adapterSpinner = ArrayAdapter.createFromResource(this,
+                R.array.cargos, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(adapterSpinner);
     }
 
     @Override
@@ -96,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String apellido = txtApellido.getText().toString();
         String email = txtEmail.getText().toString();
         int edad = Integer.parseInt(txtEdad.getText().toString());
-        String cargo = txtCargo.getText().toString();
+        String cargo = dropdown.getSelectedItem().toString();
         double salario = Double.parseDouble(txtSalario.getText().toString());
 
         Persona persona = new Persona(nombre, apellido, email, edad, salario, cargo);
@@ -109,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtApellido.getText().clear();
         txtEmail.getText().clear();
         txtEdad.getText().clear();
-        txtCargo.getText().clear();
+        dropdown.setSelection(0);
         txtSalario.getText().clear();
     }
 

@@ -45,16 +45,16 @@
         app:layout_constraintStart_toEndOf="@+id/txtNombre"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txtCargo"
-        android:layout_width="300dp"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="310dp"
         android:layout_height="50dp"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
         android:layout_marginBottom="9dp"
-        android:background="@color/white"
+        android:background="@android:drawable/btn_dropdown"
         android:ems="10"
         android:hint="Cargo"
         android:inputType="textPersonName"
@@ -63,6 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        android:spinnerMode="dropdown"/>
 
     <EditText
         android:id="@+id/txtEmail"
@@ -78,7 +79,7 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:paddingLeft="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtCargo"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtApellido" />
@@ -117,7 +118,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnListar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtEdad"
-        app:layout_constraintTop_toBottomOf="@+id/txtCargo" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <Button
         android:id="@+id/btnAgregar"
