@@ -1,6 +1,7 @@
 package com.cj.tallerformulario;
 
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.regex.Pattern;
 
 import es.dmoral.toasty.Toasty;
 
@@ -130,13 +132,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (!nombre.isEmpty() && !apellido.isEmpty() && !email.isEmpty() && !cargo.isEmpty()
                 && !edad.isEmpty() && !salario.isEmpty()) {
-            Persona persona = new Persona(nombre, apellido, email, Integer.parseInt(edad), Double.parseDouble(salario), cargo);
-            personas.add(persona);
-            limpiarCampos();
-            Toasty.success(this, "Se ha agregado a " + nombre + " " + apellido, Toast.LENGTH_SHORT, true).show();
+            if (!validarEmail(email)){
+                Toasty.warning(this, "El formato del correo no es válido", Toast.LENGTH_SHORT, true).show();
+            } else {
+                Persona persona = new Persona(nombre, apellido, email, Integer.parseInt(edad), Double.parseDouble(salario), cargo);
+                personas.add(persona);
+                limpiarCampos();
+                Toasty.success(this, "Se ha agregado a " + nombre + " " + apellido, Toast.LENGTH_SHORT, true).show();
+            }
         } else {
             Toasty.error(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT, true).show();
         }
+    }
+
+    private boolean validarEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 
     private void limpiarCampos() {
