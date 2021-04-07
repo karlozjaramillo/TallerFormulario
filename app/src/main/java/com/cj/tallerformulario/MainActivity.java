@@ -75,15 +75,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String mensajeQA = "";
                 for (Persona persona : personas
                 ) {
-                    if (persona.getCargo().equals("Desarrollador")) {
+                    if (persona.getCargo().equals(desarrollador)) {
                         mensajeDesarrollador = "Desarrolladores: " + contarCargo(desarrollador) + "\n" +
-                                "El salario promedio de un Desarrollador es $" + salarioPromedioCargo(desarrollador);
-                    } else if (persona.getCargo().equals("Analista")) {
+                                "El salario promedio de un " + desarrollador + " es $" + salarioPromedioCargo(desarrollador);
+                    } else if (persona.getCargo().equals(analista)) {
                         mensajeAnalista = "Analistas: " + contarCargo(analista) + "\n" +
-                                "El salario promedio de un Analista es $" + salarioPromedioCargo(analista);
-                    } else if (persona.getCargo().equals("QA")) {
+                                "El salario promedio de un " + analista + " es $" + salarioPromedioCargo(analista);
+                    } else if (persona.getCargo().equals(qa)) {
                         mensajeQA = "QA's: " + contarCargo(qa) + "\n" +
-                                "El salario promedio de un QA es $" + salarioPromedioCargo(qa);
+                                "El salario promedio de un " + qa + " es $" + salarioPromedioCargo(qa);
                     }
                 }
                 salariosCargos.add(mensajeDesarrollador);
@@ -161,8 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int contador = 0;
         double salarioTotal = 0;
         double promedio;
-        for (Persona persona :
-                personas) {
+        for (Persona persona : personas) {
             salarioTotal += persona.getSalario();
             contador++;
         }
@@ -174,8 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int contador = 0;
         double salarioTotal = 0;
         double promedio;
-        for (Persona persona :
-                personas) {
+        for (Persona persona : personas) {
             if (persona.getCargo().equals(cargo)) {
                 salarioTotal += persona.getSalario();
                 contador++;
@@ -187,8 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private int contarCargo(String cargo) {
         int contador = 0;
-        for (Persona persona :
-                personas) {
+        for (Persona persona : personas) {
             if (persona.getCargo().equals(cargo)) {
                 contador++;
             }
