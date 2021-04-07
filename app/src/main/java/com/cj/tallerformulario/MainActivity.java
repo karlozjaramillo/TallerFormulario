@@ -7,12 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import es.dmoral.toasty.Toasty;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btnAgregar:
                 agregarPersona();
-                limpiarCampos();
+
                 adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, personas);
                 lvLista.setAdapter(adapter);
                 break;
@@ -121,13 +124,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String nombre = txtNombre.getText().toString();
         String apellido = txtApellido.getText().toString();
         String email = txtEmail.getText().toString();
-        int edad = Integer.parseInt(txtEdad.getText().toString());
+        String edad = txtEdad.getText().toString();
         String cargo = dropdown.getSelectedItem().toString();
-        double salario = Double.parseDouble(txtSalario.getText().toString());
+        String salario = txtSalario.getText().toString();
 
-        Persona persona = new Persona(nombre, apellido, email, edad, salario, cargo);
-
-        personas.add(persona);
+        if (!nombre.isEmpty() && !apellido.isEmpty() && !email.isEmpty() && !cargo.isEmpty()
+                && !edad.isEmpty() && !salario.isEmpty()) {
+            Persona persona = new Persona(nombre, apellido, email, Integer.parseInt(edad), Double.parseDouble(salario), cargo);
+            personas.add(persona);
+            limpiarCampos();
+            Toasty.success(this, "Se ha agregado a " + nombre + " " + apellido, Toast.LENGTH_SHORT, true).show();
+        } else {
+            Toasty.error(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT, true).show();
+        }
     }
 
     private void limpiarCampos() {
