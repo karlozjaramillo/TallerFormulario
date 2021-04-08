@@ -80,15 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String mensajeQA = "";
                 for (Persona persona : personas
                 ) {
-                    if (persona.getCargo().equals(desarrollador)) {
-                        mensajeDesarrollador = "Desarrolladores: " + contarCargo(desarrollador) + "\n" +
-                                "El salario promedio de un " + desarrollador + " es $" + salarioPromedioCargo(desarrollador);
-                    } else if (persona.getCargo().equals(analista)) {
-                        mensajeAnalista = "Analistas: " + contarCargo(analista) + "\n" +
-                                "El salario promedio de un " + analista + " es $" + salarioPromedioCargo(analista);
-                    } else if (persona.getCargo().equals(qa)) {
-                        mensajeQA = "QA's: " + contarCargo(qa) + "\n" +
-                                "El salario promedio de un " + qa + " es $" + salarioPromedioCargo(qa);
+                    switch (persona.getCargo()) {
+                        case "Desarrollador":
+                            mensajeDesarrollador = "Desarrolladores: " + contarCargo(desarrollador) + "\n" +
+                                    "El salario promedio de un " + desarrollador + " es $" + salarioPromedioCargo(desarrollador);
+                            break;
+                        case "Analista":
+                            mensajeAnalista = "Analistas: " + contarCargo(analista) + "\n" +
+                                    "El salario promedio de un " + analista + " es $" + salarioPromedioCargo(analista);
+                        case "QA":
+                            mensajeQA = "QA's: " + contarCargo(qa) + "\n" +
+                                    "El salario promedio de un " + qa + " es $" + salarioPromedioCargo(qa);
                     }
                 }
                 salariosCargos.add(mensajeDesarrollador);
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (!nombre.isEmpty() && !apellido.isEmpty() && !email.isEmpty() && !cargo.isEmpty()
                 && !edad.isEmpty() && !salario.isEmpty()) {
-            if (!validarEmail(email)){
+            if (!validarEmail(email)) {
                 Toasty.warning(this, "El formato del correo no es válido", Toast.LENGTH_SHORT, true).show();
             } else {
                 Persona persona = new Persona(nombre, apellido, email, Integer.parseInt(edad), Double.parseDouble(salario), cargo);
